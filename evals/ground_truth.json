@@ -1,0 +1,72 @@
+[
+  {
+    "id": "q01_tikitaka_origin",
+    "question": "Which manager is most associated with developing tiki-taka at Barcelona, and during what years?",
+    "expected_keywords": ["Guardiola", "Barcelona", "2008", "2012"],
+    "reference_answer": "Pep Guardiola, who managed Barcelona from 2008 to 2012.",
+    "topic_should_appear": ["tiki-taka"]
+  },
+  {
+    "id": "q02_false_nine_definition",
+    "question": "What is a false nine?",
+    "expected_keywords": ["centre-forward", "drop", "midfield", "withdraw"],
+    "reference_answer": "A false nine is a nominal centre-forward who drops deep into midfield to draw defenders out of position and create space for teammates.",
+    "topic_should_appear": ["false_9"]
+  },
+  {
+    "id": "q03_counter_press_definition",
+    "question": "What is counter-pressing (gegenpressing)?",
+    "expected_keywords": ["regain", "possession", "lose", "immediately"],
+    "reference_answer": "Counter-pressing is the tactic of attempting to win back possession immediately after losing it, rather than retreating into a defensive shape.",
+    "topic_should_appear": ["counter-press"]
+  },
+  {
+    "id": "q04_total_football_origin",
+    "question": "Which national team and club are most associated with Total Football in the 1970s?",
+    "expected_keywords": ["Netherlands", "Ajax", "1970"],
+    "reference_answer": "The Netherlands national team and Ajax of Amsterdam, primarily in the 1970s.",
+    "topic_should_appear": ["total_football"]
+  },
+  {
+    "id": "q05_catenaccio_definition",
+    "question": "What is catenaccio and where did it originate?",
+    "expected_keywords": ["Italian", "defensive", "sweeper", "Italy"],
+    "reference_answer": "Catenaccio is a defensive tactical system that originated in Italian football, characterized by a strong organized defense and often the use of a sweeper (libero) behind the back line.",
+    "topic_should_appear": ["catenaccio"]
+  },
+  {
+    "id": "q06_433_structure",
+    "question": "What is the basic structure of a 4-3-3 formation?",
+    "expected_keywords": ["four", "defenders", "three", "midfielders", "forwards"],
+    "reference_answer": "A 4-3-3 formation consists of four defenders, three midfielders, and three forwards.",
+    "topic_should_appear": ["4_3_3"]
+  },
+  {
+    "id": "q07_sweeper_keeper",
+    "question": "What does a sweeper-keeper do that distinguishes them from a traditional goalkeeper?",
+    "expected_keywords": ["outside", "penalty area", "ball", "playing"],
+    "reference_answer": "A sweeper-keeper operates outside the penalty area to clear loose balls and participates in build-up play, rather than staying confined to the goal line like a traditional goalkeeper.",
+    "topic_should_appear": ["sweeper-keeper"]
+  },
+  {
+    "id": "q08_low_block",
+    "question": "What is a low block in football tactics?",
+    "expected_keywords": ["deep", "defensive", "compact", "own half"],
+    "reference_answer": "A low block is a defensive shape where the team sits deep in their own half, compact and close to their own goal, looking to deny space behind the defense and absorb pressure.",
+    "topic_should_appear": ["low_block_association_football_"]
+  },
+  {
+    "id": "q09_buildup_play",
+    "question": "What is build-up play?",
+    "expected_keywords": ["defense", "passing", "progress", "attack"],
+    "reference_answer": "Build-up play refers to the structured passing sequences a team uses to advance the ball from defense through midfield into attacking areas.",
+    "topic_should_appear": ["build-up_play"]
+  },
+  {
+    "id": "q10_transition_definition",
+    "question": "What is meant by 'transition' in football tactics?",
+    "expected_keywords": ["possession", "change", "defense", "attack"],
+    "reference_answer": "Transition refers to the moments when possession changes hands — either from defense to attack (offensive transition) or attack to defense (defensive transition).",
+    "topic_should_appear": ["transition_association_football_"]
+  }
+]

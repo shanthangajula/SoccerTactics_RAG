@@ -1,0 +1,233 @@
+[
+  {
+    "id": "q01_tikitaka_origin",
+    "question": "Which manager is most associated with developing tiki-taka at Barcelona, and during what years?",
+    "answer": "Based on the provided context, **Pep Guardiola** is most associated with developing tiki-taka at Barcelona, managing the club from **2008 to 2012**. Under his guidance, tiki-taka was firmly established, winning 14 titles, including a historic sextuple in 2009. [tiki-taka]",
+    "retrieved_topics": [
+      "tiki-taka"
+    ],
+    "expected_keywords": [
+      "Guardiola",
+      "Barcelona",
+      "2008",
+      "2012"
+    ],
+    "expected_topics": [
+      "tiki-taka"
+    ],
+    "keyword_recall": 1.0,
+    "topic_hit": 1.0,
+    "latency_sec": 3.93,
+    "faithfulness": 0.8,
+    "faithfulness_reason": "The answer correctly attributes the development of tiki-taka to Pep Guardiola and mentions his tenure and title wins, but the claim of a 'historic sextuple' is not explicitly supported by the context."
+  },
+  {
+    "id": "q02_false_nine_definition",
+    "question": "What is a false nine?",
+    "answer": "## False Nine\n\nA **false 9** is an unconventional lone striker or centre-forward who drops deep into midfield, similar to a more advanced attacking midfielder or playmaker. [false_9]\n\n### How it creates problems for defenders\nIt poses a dilemma for opposing centre-backs, who must choose between:\n- **Following the false 9** into midfield, leaving space behind them for onrushing teammates to exploit\n- **Staying back**, giving the false 9 time and space to dribble or pick out a pass [false_9]\n\n### Key attributes\n- Dribbling ability to exploit space between the lines\n- Good short passing to link up with midfield\n- Vision to play through teammates making runs toward goal [false_9]\n\nThe false 9 is often described as a **quick, nimble, creative, and technical player** with good movement and positioning, as well as a penchant for scoring goals. [playmaker]\n\n### Notable examples\n- **Lionel Messi** under Pep Guardiola at Barcelona\n- **Cesc F\u00e0bregas** with Spain under Vicente del Bosque\n- **Francesco Totti** at Roma under Luciano Spalletti\n- **Roberto Firmino** under J\u00fcrgen Klopp [playmaker]\n\nThe term derives from the traditional **number 9** shirt worn by centre-forwards. In Italian football jargon, the role is called **\"centravanti di manovra\"** (manoeuvring centre-forward). [playmaker]",
+    "retrieved_topics": [
+      "false_9",
+      "forward__association_football",
+      "playmaker"
+    ],
+    "expected_keywords": [
+      "centre-forward",
+      "drop",
+      "midfield",
+      "withdraw"
+    ],
+    "expected_topics": [
+      "false_9"
+    ],
+    "keyword_recall": 0.75,
+    "topic_hit": 1.0,
+    "latency_sec": 8.39,
+    "faithfulness": 0.9,
+    "faithfulness_reason": "The answer accurately describes the false 9 role and its implications for defenders, but the claim about the false 9 being 'quick, nimble, creative, and technical' is not explicitly supported by the provided context."
+  },
+  {
+    "id": "q03_counter_press_definition",
+    "question": "What is counter-pressing (gegenpressing)?",
+    "answer": "Based on the provided context, **counter-pressing** is a tactic applied **immediately after losing the ball** in order to **quickly regain possession**. [pressing__association_football]\n\nThis is distinct from regular pressing, which is a tactic applied by a team already in its defensive shape. Counter-pressing is essentially an immediate, reactive response to losing the ball, rather than an organized defensive structure.",
+    "retrieved_topics": [
+      "false_9",
+      "forward__association_football",
+      "pressing__association_football"
+    ],
+    "expected_keywords": [
+      "regain",
+      "possession",
+      "lose",
+      "immediately"
+    ],
+    "expected_topics": [
+      "counter-press"
+    ],
+    "keyword_recall": 0.75,
+    "topic_hit": 0.0,
+    "latency_sec": 3.23,
+    "faithfulness": 1.0,
+    "faithfulness_reason": "The answer accurately describes counter-pressing as stated in the context."
+  },
+  {
+    "id": "q04_total_football_origin",
+    "question": "Which national team and club are most associated with Total Football in the 1970s?",
+    "answer": "Based on the provided context, the **Netherlands national team** and **Ajax** (Dutch club) are most associated with Total Football in the 1970s. Manager Rinus Michels is credited with developing the system at both clubs, most notably with Johan Cruyff as its most famous exponent. Together, they achieved remarkable success, winning eight Eredivisie titles, three European Cups, and one Intercontinental Cup, though they famously lost the 1974 FIFA World Cup final to West Germany. [total_football]",
+    "retrieved_topics": [
+      "total_football"
+    ],
+    "expected_keywords": [
+      "Netherlands",
+      "Ajax",
+      "1970"
+    ],
+    "expected_topics": [
+      "total_football"
+    ],
+    "keyword_recall": 1.0,
+    "topic_hit": 1.0,
+    "latency_sec": 4.09,
+    "faithfulness": 1.0,
+    "faithfulness_reason": "All claims in the answer are supported by the context provided."
+  },
+  {
+    "id": "q05_catenaccio_definition",
+    "question": "What is catenaccio and where did it originate?",
+    "answer": "**Catenaccio** is a tactical system in football with a strong emphasis on defence. The word comes from Italian, meaning \"door-bolt,\" which reflects its core purpose: a highly organised backline defence focused on nullifying opponents' attacks and preventing goal-scoring opportunities. [catenaccio]\n\n**Key defensive features include:**\n- A **libero (sweeper)** positioned behind a line of three man-marking defenders, tasked with recovering loose balls and nullifying opposing strikers\n- **Counter-attacks** based on long passes from defence after winning back possession [catenaccio]\n\n**Origins:** The system developed in **Italy**. Ottavio Barbieri introduced the sweeper role to Italian football in **1946** while managing Genoa, drawing influence from Karl Rappan's Swiss *verrou* system and modifying the English WM formation. The tactic was further developed by **Nereo Rocco**, who first deployed what is considered the \"real Catenaccio\" in **1947 with Triestina**, using a 1\u20133\u20133\u20133 formation. It was then widely adopted by Italian clubs throughout the 1960s. [catenaccio]",
+    "retrieved_topics": [
+      "catenaccio"
+    ],
+    "expected_keywords": [
+      "Italian",
+      "defensive",
+      "sweeper",
+      "Italy"
+    ],
+    "expected_topics": [
+      "catenaccio"
+    ],
+    "keyword_recall": 1.0,
+    "topic_hit": 1.0,
+    "latency_sec": 9.0,
+    "faithfulness": 1.0,
+    "faithfulness_reason": "All factual claims in the answer are supported by the context provided."
+  },
+  {
+    "id": "q06_433_structure",
+    "question": "What is the basic structure of a 4-3-3 formation?",
+    "answer": "The provided passages do not contain a description of the basic structure of a 4\u20133\u20133 formation. While the 4\u20133\u20133 is mentioned briefly \u2014 noting that a 4\u20135\u20131 can resemble it when the midfield wingers play more attacking roles [4\u20135\u20131] \u2014 no detailed breakdown of the 4\u20133\u20133's structure is given. I don't know based on the available context.",
+    "retrieved_topics": [
+      "4_2_3_1",
+      "4_3_3",
+      "formation__association_football"
+    ],
+    "expected_keywords": [
+      "four",
+      "defenders",
+      "three",
+      "midfielders",
+      "forwards"
+    ],
+    "expected_topics": [
+      "4_3_3"
+    ],
+    "keyword_recall": 0.0,
+    "topic_hit": 1.0,
+    "latency_sec": 6.55,
+    "faithfulness": 1.0,
+    "faithfulness_reason": "The answer accurately states that the context does not provide a description of the 4\u20133\u20133 formation."
+  },
+  {
+    "id": "q07_sweeper_keeper",
+    "question": "What does a sweeper-keeper do that distinguishes them from a traditional goalkeeper?",
+    "answer": "Based on the passages, a sweeper-keeper differs from a traditional goalkeeper in several key ways [sweeper-keeper]:\n\n- **Ball skills**: They are selected not only for shot-stopping but also for their **skill with the ball at their feet** and ability to **pick out passes and contribute to build-up play**.\n- **Rushing out**: They use their **speed to rush out of the penalty area** to anticipate and intercept opposing forwards, including those who have beaten the offside trap.\n- **High defensive line**: Their ability to act as a last line of defense outside the box enables their team to **maintain a high defensive line**.\n- **Sweeping role**: They effectively act as an outfield sweeper, sometimes described as an **11th outfield player**.\n\nHowever, this comes with notable risks: being far from goal leaves the team vulnerable to **long-range lob goals**, and rushing out to challenge opponents risks a **red card** if they foul or handball a shot by mistake.",
+    "retrieved_topics": [
+      "goalkeeper__association_football",
+      "sweeper-keeper"
+    ],
+    "expected_keywords": [
+      "outside",
+      "penalty area",
+      "ball",
+      "playing"
+    ],
+    "expected_topics": [
+      "sweeper-keeper"
+    ],
+    "keyword_recall": 0.75,
+    "topic_hit": 1.0,
+    "latency_sec": 7.48,
+    "faithfulness": 1.0,
+    "faithfulness_reason": "All claims in the answer are directly supported by the context passages."
+  },
+  {
+    "id": "q08_low_block",
+    "question": "What is a low block in football tactics?",
+    "answer": "The provided passages do not contain any information about the \"low block\" tactic in football. I don't know the answer based on the available context.",
+    "retrieved_topics": [
+      "4_2_3_1",
+      "4_3_3",
+      "formation__association_football"
+    ],
+    "expected_keywords": [
+      "deep",
+      "defensive",
+      "compact",
+      "own half"
+    ],
+    "expected_topics": [
+      "low_block_association_football_"
+    ],
+    "keyword_recall": 0.0,
+    "topic_hit": 0.0,
+    "latency_sec": 2.5,
+    "faithfulness": 1.0,
+    "faithfulness_reason": "The answer appropriately states that the context does not provide information about the 'low block' tactic."
+  },
+  {
+    "id": "q09_buildup_play",
+    "question": "What is build-up play?",
+    "answer": "Based on the provided passages, **build-up play** is mentioned briefly in the context of midfield involvement \u2014 specifically, that some playmakers \"function in a more central midfield role, alternating between playing in more offensive roles and participating in the build-up plays in the midfield\" [playmaker].\n\nHowever, the passages do not provide a detailed definition of build-up play. I don't have enough information in the provided context to give you a full explanation of what build-up play entails.",
+    "retrieved_topics": [
+      "playmaker"
+    ],
+    "expected_keywords": [
+      "defense",
+      "passing",
+      "progress",
+      "attack"
+    ],
+    "expected_topics": [
+      "build-up_play"
+    ],
+    "keyword_recall": 0.0,
+    "topic_hit": 0.0,
+    "latency_sec": 5.07,
+    "faithfulness": 1.0,
+    "faithfulness_reason": "The answer accurately reflects the context regarding playmakers' involvement in build-up play and appropriately states the lack of detailed information."
+  },
+  {
+    "id": "q10_transition_definition",
+    "question": "What is meant by 'transition' in football tactics?",
+    "answer": "The passages provided do not contain any explanation of what \"transition\" means in football tactics. I don't know based on the available context.",
+    "retrieved_topics": [
+      "false_9",
+      "forward__association_football",
+      "total_football"
+    ],
+    "expected_keywords": [
+      "possession",
+      "change",
+      "defense",
+      "attack"
+    ],
+    "expected_topics": [
+      "transition_association_football_"
+    ],
+    "keyword_recall": 0.0,
+    "topic_hit": 0.0,
+    "latency_sec": 2.02,
+    "faithfulness": 1.0,
+    "faithfulness_reason": "The answer appropriately states that the context does not provide information on 'transition' in football tactics."
+  }
+]
