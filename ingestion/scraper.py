@@ -115,6 +115,10 @@ def main() -> int:
         try:
             html = fetch(url)
             text = extract_main_text(html)
+            if len(text) < 500:
+                print(f"  [{i:>2}/{len(urls)}] SKIP empty/stub ({len(text)} chars): {url}")
+                fail += 1
+                continue
             if len(text) < 200:
                 # Probably a redirect to a stub; flag but still save.
                 print(f"  [{i:>2}/{len(urls)}] WARN short content ({len(text)} chars): {url}")
