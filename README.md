@@ -1,3 +1,16 @@
+---
+title: Soccer Tactics RAG
+emoji: ⚽
+colorFrom: green
+colorTo: blue
+sdk: streamlit
+sdk_version: 1.32.0
+app_file: app.py
+pinned: false
+license: mit
+short_description: Self-correcting RAG over soccer tactics with CRAG agentic loop
+---
+
 # soccer-tactics-rag
 
 A compound AI workflow over a corpus of soccer tactical analysis, combining **retrieval-augmented generation, planned agentic orchestration, and an evaluation harness**. The corpus is 20 Wikipedia articles covering tactics, formations, and player roles.
