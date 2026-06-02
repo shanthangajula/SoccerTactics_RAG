@@ -8,7 +8,7 @@ sdk_version: 1.32.0
 app_file: app.py
 pinned: false
 license: mit
-short_description: Self-correcting RAG over soccer tactics with CRAG agentic loop
+short_description: Self-correcting RAG over soccer tactics
 ---
 
 # soccer-tactics-rag
