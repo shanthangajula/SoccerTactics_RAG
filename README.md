@@ -8,16 +8,16 @@ sdk_version: 1.32.0
 app_file: app.py
 pinned: false
 license: mit
-short_description: Self-correcting RAG over soccer tactics with CRAG agentic loop
+short_description: Self-correcting RAG over soccer tactics
 ---
 
 # soccer-tactics-rag
 
-A compound AI workflow over a soccer-tactics corpus. Built three layers, in order: a naive RAG baseline, an evaluation harness, and an agentic self-correction loop implementing the Corrective RAG (CRAG) pattern from Yan et al. (2024). The ordering matters — the eval harness exists *before* the agentic layer so every piece of added complexity can be measured against the baseline rather than asserted on vibes.
+A compound AI workflow over a soccer-tactics corpus. Built three layers, in order: a naive RAG baseline, an evaluation harness, and an agentic self-correction loop implementing the Corrective RAG (CRAG) pattern from Yan et al. (2024). The ordering matters,the eval harness exists *before* the agentic layer so every piece of added complexity can be measured against the baseline rather than asserted on vibes.
 
 The corpus is 20 Wikipedia articles covering tactics (gegenpressing, tiki-taka, catenaccio…), formations (4-3-3, 4-2-3-1, 3-5-2, 4-4-2), and player roles (sweeper-keeper, playmaker, false 9).
 
-**Live demo:** *(deployment in progress — Streamlit on HF Spaces, see `DEPLOYMENT.md`)*
+**Live demo:** *(deployment in progress, Streamlit on HF Spaces, see `DEPLOYMENT.md`)*
 
 ## What I built vs. what I used
 
@@ -25,7 +25,7 @@ To be clear about scope:
 
 - **Built**: the LangGraph state machine (five nodes, two conditional edges, bounded retries on both retry paths), the ingestion pipeline (scraper with Wikipedia-aware chrome stripping, token-based chunker, Chroma index), the evaluation harness (10 ground-truth questions with keyword recall, retrieval hit-rate, and LLM-as-judge faithfulness metrics), and the Streamlit UI with verdict trace inspection.
 - **Used**: LangGraph for graph orchestration, LangChain abstractions for provider swappability, Chroma for vector storage, OpenAI `text-embedding-3-small` for embeddings, Claude Sonnet 4.6 for generation and judging, GPT-4o-mini as a cross-family judge in the eval harness.
-- **Followed**: the CRAG pattern (Yan et al. 2024) for the agentic structure — grade retrieval, rewrite on failure, check generation, regenerate on failure. The pattern is from the paper; the implementation in this codebase is mine.
+- **Followed**: the CRAG pattern (Yan et al. 2024) for the agentic structure: grade retrieval, rewrite on failure, check generation, regenerate on failure. The pattern is from the paper; the implementation in this codebase is mine.
 
 ## Architecture
 
@@ -89,25 +89,25 @@ evals/ground_truth.json (10 questions, expected keywords, expected topics)
 | Vector DB | Chroma (local, persisted to disk) | Zero-ops for a prototype. The `langchain_chroma` interface is compatible with swapping to Pinecone or pgvector if the corpus grows past ~100k chunks. |
 | Chunking | `RecursiveCharacterTextSplitter`, 500 tok / 50 overlap, token-based via `cl100k_base` | Real token counts, not character approximations. Recursive splitting tries paragraph → sentence → word boundaries to preserve semantic units. |
 | Generator | Claude Sonnet 4.6, temperature 0 | Sonnet at temp 0 gives deterministic outputs, which is necessary for eval-harness reproducibility. |
-| Grader / checker | Claude Sonnet 4.6, JSON output | Same model as the generator. Cost of running three Claude calls per agentic query is ~$0.02 — acceptable for the demo, would need cheaper judges (Haiku, gpt-4o-mini) at production scale. |
-| Eval judge | OpenAI `gpt-4o-mini` | Cross-family — using the same model to generate *and* judge correlates errors. A model is bad at noticing the kinds of mistakes it makes. |
+| Grader / checker | Claude Sonnet 4.6, JSON output | Same model as the generator. Cost of running three Claude calls per agentic query is ~$0.02 and it's acceptable for the demo, would need cheaper judges (Haiku, gpt-4o-mini) at production scale. |
+| Eval judge | OpenAI `gpt-4o-mini` | Cross-family using the same model to generate *and* judge correlates errors. A model is bad at noticing the kinds of mistakes it makes. |
 | Orchestration | LangGraph | Conditional edges and explicit state make the control flow inspectable. Tracing through a graph is easier than tracing through nested `if` statements in one function. |
 
 ## Design decisions
 
 These are the ones I'd defend in a technical conversation.
 
-**Built the eval harness before the agentic layer.** A re-ranker, a rewriter, a hallucination checker — each adds latency and cost. Without a baseline measurement, "improvement" is just code accumulation. The harness lets me say which additions actually moved the needle and which got cut.
+**Built the eval harness before the agentic layer.** A re-ranker, a rewriter, a hallucination checker, each adds latency and cost. Without a baseline measurement, "improvement" is just code accumulation. The harness lets me say which additions actually moved the needle and which got cut.
 
-**Three metrics, not one.** `keyword_recall` (cheap, brittle, catches wholly wrong answers), `topic_hit` (isolates retrieval from generation), and LLM-judged `faithfulness` (catches hallucination). They fail differently: a high-faithfulness, low-keyword-recall answer is "wrong but well-grounded" — a chunking or retrieval problem — while the inverse is a hallucination problem. A single aggregate metric would obscure this.
+**Three metrics, not one.** `keyword_recall` (cheap, brittle, catches wholly wrong answers), `topic_hit` (isolates retrieval from generation), and LLM-judged `faithfulness` (catches hallucination). They fail differently: a high-faithfulness, low-keyword-recall answer is "wrong but well-grounded", a chunking or retrieval problem, while the inverse is a hallucination problem. A single aggregate metric would obscure this.
 
 **Cross-family judge.** GPT-4o-mini judges Claude's output in the eval harness. Same-family judging is a known anti-pattern in the LLM-as-judge literature; models systematically fail to catch the kinds of errors they themselves produce. The cost difference between Claude-judging-Claude and gpt-4o-mini judging Claude is negligible (~$0.001/query); the methodological hygiene is worth it.
 
-**Binary verdicts with reasons, not numeric scores.** Both the grader and the hallucination checker return `yes/no` + a one-line reason rather than a 0–1 float. LLMs are poorly calibrated at producing numerical confidence — there's no real signal in `0.7` vs `0.6`. Binary forces a commitment, and the reason field becomes input to the next node (the rewriter sees why the chunks were rejected; the regenerator sees why the answer was rejected). That feedback loop is the whole reason CRAG works.
+**Binary verdicts with reasons, not numeric scores.** Both the grader and the hallucination checker return `yes/no` + a one-line reason rather than a 0–1 float. LLMs are poorly calibrated at producing numerical confidence, there's no real signal in `0.7` vs `0.6`. Binary forces a commitment, and the reason field becomes input to the next node (the rewriter sees why the chunks were rejected; the regenerator sees why the answer was rejected). That feedback loop is the whole reason CRAG works.
 
 **Bounded retries.** Max one rewrite, max one regeneration. Unbounded retry loops are how agentic systems run up $200 bills oscillating between near-duplicate states. One retry recovers from the common case (query phrasing, generator wandering off-context); a second wouldn't typically add value.
 
-**Carried full history in graph state.** The state TypedDict tracks `query_history`, `grader_verdicts`, `answer_history`, and `hallucination_verdicts` — not just current values. This makes the full decision trace inspectable downstream, which is what the Streamlit UI uses to show "the agent self-corrected" callouts. It also means the eval harness can score not just the final answer but how the graph got there.
+**Carried full history in graph state.** The state TypedDict tracks `query_history`, `grader_verdicts`, `answer_history`, and `hallucination_verdicts` not just current values. This makes the full decision trace inspectable downstream, which is what the Streamlit UI uses to show "the agent self-corrected" callouts. It also means the eval harness can score not just the final answer but how the graph got there.
 
 **Chunk size 500, not 1000 or 200.** 500 tokens (~375 words, ~2 paragraphs of typical Wikipedia prose) is large enough to contain a self-contained idea but small enough to keep retrieval precise. The 50-token overlap exists so that a key phrase split mid-chunk ("false…nine") still appears intact in at least one of the adjacent chunks.
 
@@ -118,58 +118,3 @@ These are the ones I'd defend in a technical conversation.
 - **Naive top-k retrieval, no re-ranking.** Top-5 cosine similarity often surfaces chunks that are topically close but not the most relevant for the specific question. A cross-encoder re-ranker would help; not yet built.
 - **No routing.** Every question goes through the same retrieval path. A routing node that classifies questions into tactical-concept / formation / role buckets and queries metadata-filtered sub-collections would improve precision; not yet built.
 - **Single judge model in evals.** Using one LLM to judge another correlates errors even across families. Production setups use multiple judges or human spot-checks on judge disagreements.
-
-## Layout
-
-```
-soccer-tactics-rag/
-├── urls.txt                  curated Wikipedia URLs
-├── ingestion/
-│   ├── scraper.py            fetch + clean Wikipedia HTML → data/raw/*.txt
-│   └── index.py              chunk + embed + persist to chroma_db/
-├── rag.py                    naive RAG: ask() + CLI (layer 1)
-├── agentic_rag.py            LangGraph CRAG: grader + rewriter + checker (layer 2)
-├── evals/
-│   ├── ground_truth.json     10 reference questions
-│   ├── run_eval.py           runner with deterministic + LLM-judge metrics
-│   ├── smoke_5q.py           5-question end-to-end test of the agentic graph
-│   └── README.md             metric definitions and interpretation
-├── app.py                    Streamlit UI exposing both naive and agentic modes
-├── DEPLOYMENT.md             step-by-step HF Spaces deployment guide
-├── data/raw/                 gitignored, populated by scraper
-├── chroma_db/                gitignored, populated by index
-└── .env                      gitignored, see .env.example
-```
-
-## Run it
-
-```bash
-python3.11 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env          # put real keys in .env (never in .env.example)
-
-python ingestion/scraper.py   # writes data/raw/*.txt (~20 files)
-python ingestion/index.py     # builds chroma_db/, runs a smoke query
-
-# CLI
-python rag.py "What is gegenpressing?"                 # naive
-python agentic_rag.py "What is gegenpressing?" --trace # agentic, full trace
-
-# Evaluation
-python evals/run_eval.py --judge --out evals/results.json
-python evals/smoke_5q.py      # 5-question end-to-end test
-
-# Web UI
-streamlit run app.py
-```
-
-## What's next
-
-In order of expected impact on the eval metrics:
-
-1. **`--agentic` flag for `evals/run_eval.py`** to produce a side-by-side comparison of the naive baseline vs. the full graph. This is the artifact that matters most for the project's story.
-2. **Re-ranker after retrieve**, before grade. Most likely to move `topic_hit` upward.
-3. **Routing on question type**. Should reduce cross-topic confusion on multi-concept questions.
-4. **Expanded eval set to 50+ questions** including deliberate adversarial cases.
-
-Each of these gets measured against the baseline; anything that doesn't improve the metrics gets cut.
